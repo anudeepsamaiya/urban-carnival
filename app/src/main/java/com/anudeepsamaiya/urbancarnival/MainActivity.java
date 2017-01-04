@@ -1,6 +1,8 @@
 package com.anudeepsamaiya.urbancarnival;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,12 +11,17 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.anudeepsamaiya.urbancarnival.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
+
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -26,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        PhotoLibraryAdapter libraryAdapter = new PhotoLibraryAdapter();
+        binding.rvMain.setAdapter(libraryAdapter);
+
+        libraryAdapter.updateDataset(ImageProvider.getInstance(getContentResolver()).query());
+
+
     }
 
     @Override
