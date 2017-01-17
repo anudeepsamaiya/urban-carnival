@@ -32,14 +32,9 @@ public class ImageProvider {
 
         String[] projections = {
                 MediaStore.Images.Media._ID,
-                MediaStore.Images.Media._COUNT,
-                MediaStore.Images.Media.MIME_TYPE,
-                MediaStore.Images.Media.SIZE,
-                MediaStore.Images.Media.TITLE,
-                MediaStore.Images.Media.DESCRIPTION,
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
+                MediaStore.Images.Media.DATE_TAKEN,
                 MediaStore.Images.Media.DATA,
-                MediaStore.Images.Media.DATE_ADDED,
-                MediaStore.Images.Media.DATE_TAKEN
         };
 
         Cursor cursor = MediaStore.Images.Media.query(resolver,
